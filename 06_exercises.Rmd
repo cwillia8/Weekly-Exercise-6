@@ -180,6 +180,6 @@ graph3 <- garden_harvest %>%
   plot_annotation("Quantitative Graphs of Carrot, Lettuce, and Pea Harvest")
  
 ```
-
+[Github Link](https://github.com/cwillia8/Weekly-Exercise-6)
 
 **DID YOU REMEMBER TO UNCOMMENT THE OPTIONS AT THE TOP?**
