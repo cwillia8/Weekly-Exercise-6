@@ -12,7 +12,7 @@ output:
 
 
 ```{r setup, include=FALSE}
-#knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
+knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
 ```
 
 ```{r libraries}
@@ -79,11 +79,20 @@ Once your repository is created, you should always open your **project** rather 
 
   2. Read in the fake garden harvest data. Find the data [here](https://github.com/llendway/scraping_etc/blob/main/2020_harvest.csv) and click on the `Raw` button to get a direct link to the data. 
   
-```{r}
-fake_garden_date <- read_csv("https://raw.githubusercontent.com/llendway/scraping_etc/main/2020_harvest.csv")
+```{r, eval = FALSE}
+fake_garden_date <- read_csv("https://raw.githubusercontent.com/llendway/scraping_etc/main/2020_harvest.csv",
+                             skip = 2)
+
+fake_garden_date2 <- fake_garden_date %>% 
+  select(-X1)
+  
 ```
   
-  
+```{r}
+fake_garden_date2
+```
+
+ 
   3. Read in this [data](https://www.kaggle.com/heeraldedhia/groceries-dataset) from the kaggle website. You will need to download the data first. Save it to your project/repo folder. Do some quick checks of the data to assure it has been read in appropriately.
   
 ```{r}
@@ -116,8 +125,8 @@ garden_harvest %>%
                         "Big Beef",
                         "Cherokee Purple",
                         "Amish Paste",
-                        "Black Krim")
-                                      ) %>% 
+                        "Black Krim")) %>% 
+  select(-vegetable) %>% 
   gt(groupname_col = "variety") %>% 
   fmt_date(columns = vars(date), 
            date_style = 6) %>% 
